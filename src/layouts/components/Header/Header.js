@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import config from '~/config';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -55,7 +57,7 @@ const MENU_ITEMS = [
 ];
 
 const Header = () => {
-    const currentUser = true;
+    const currentUser = false;
 
     //handle logic
     const handleMenuChange = (menuItem) => {
@@ -96,7 +98,9 @@ const Header = () => {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 {/* Logo */}
-                <img src={images.logo} alt="Logo-TikTok" />
+                <Link to={config.routes.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="Logo-TikTok" />
+                </Link>
 
                 {/* Search */}
                 <Search />
@@ -130,16 +134,16 @@ const Header = () => {
                     )}
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
-                        {currentUser ? (
+                        {!currentUser ? (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        ) : (
                             <Image
                                 className={cx('user-avatar')}
                                 src="https://i.kinja-img.com/gawker-media/image/upload/t_original/ijsi5fzb1nbkbhxa2gc1.png"
                                 alt="avatar"
                             />
-                        ) : (
-                            <button className={cx('more-btn')}>
-                                <FontAwesomeIcon icon={faEllipsisVertical} />
-                            </button>
                         )}
                     </Menu>
                 </div>
