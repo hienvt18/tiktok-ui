@@ -1,8 +1,5 @@
-
 const Following = () => {
-  return (
-    <div>Following Pages</div>
-  )
-}
+    return <h2>Following Pages</h2>;
+};
 
-export default Following
+export default Following;
